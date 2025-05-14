@@ -11,17 +11,23 @@ const Navigation = () => {
                     <p className='font-bold text-[18px]'>PYGIT HUB</p>
                 </div>
                 <div>
-                    <p className='text-[16px] cursor-pointer'>Repositories</p>
+                    <Link href='/repositories'>
+                        <p className='text-[16px] cursor-pointer'>Repositories</p>
+                    </Link>
                 </div>
                 <div>
-                    <p className='text-[16px] cursor-pointer'>Create Repository</p>
+                    <Link href='/repositories/create'>
+                        <p className='text-[16px] cursor-pointer'>Create Repository</p>
+                    </Link>
                 </div>
                 <div>
                     <p className='text-[16px] cursor-pointer'>Explore Users</p>
                 </div>
             </div>
             <div className='flex flex-row space-x-[6px] items-center'>
-                <Button>Sign In</Button>
+                <Link href='/signin'>
+                    <Button>Sign In</Button>
+                </Link>
                 <Link href='/signup'>
                     <Button type='primary'>
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
