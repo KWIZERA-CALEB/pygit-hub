@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { axiosInstance } from '@/utils/axios'
+import toast from 'react-hot-toast'
 
-// const BASE_URL = process.env.NEXT_PUBLIC_APP_BASIC_API_ENDPOINT
 
 interface useAuthStoreTypes {
     authUser: null | unknown;
@@ -20,7 +20,16 @@ export const useAuthStore = create<useAuthStoreTypes>((set, get) => ({
         set({ isSigningUp: true });
         try {
             const res = await axiosInstance.post("/api/register", data);
-            console.log(res)
+            toast.success("Registered successfully", { 
+                position: 'bottom-center',
+                duration: 5000,            
+                className: 'font-roboto text-[12px] font-bold cursor-pointer',
+                style: {
+                    color: '#fff',        
+                    backgroundColor: '#15B392',
+                    padding: '6px 20px', 
+                },
+            });
         } catch (error) {
             console.log(`Error ${error}`)
         } finally {
@@ -32,7 +41,18 @@ export const useAuthStore = create<useAuthStoreTypes>((set, get) => ({
         set({ isSigningIn: true })
         try {
             const res = await axiosInstance.post("/api/login", data);
-            console.log(res)
+            set({ authUser: res.data })
+            toast.success("Loggedin successfully", { 
+                position: 'bottom-center',
+                duration: 5000,            
+                className: 'font-roboto text-[12px] font-bold cursor-pointer',
+                style: {
+                    color: '#fff',        
+                    backgroundColor: '#15B392',
+                    padding: '6px 20px', 
+                },
+            });
+            console.log(`User after login data: ${res.data}`)
         } catch (error) {
             console.log(`Error ${error}`)
         } finally {
